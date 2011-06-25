@@ -14,8 +14,8 @@
 
 	body {
 		margin-top: 1.0em;
-		background-image:-moz-radial-gradient(center -100px 45deg, circle farthest-corner, #999 25px, #333 450px);
-		background-image:-webkit-gradient(radial, 50% 0, 25, 50% 0, 450, from(#999), to(#333));font-family: "Helvetica,Arial,FreeSans";
+		background-image:-moz-radial-gradient(center -100px 45deg, circle farthest-corner, #999 25px, #006633 450px);
+		background-image:-webkit-gradient(radial, 50% 0, 25, 50% 0, 450, from(#999), to(#006633));font-family: "Helvetica,Arial,FreeSans";
 		font-family: "Helvetica,Arial,FreeSans";
 		color: #ffffff;
 	}
@@ -90,11 +90,13 @@
 
 	<script type='text/javascript' src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
  	<script type='text/javascript' src="http://jashkenas.github.com/coffee-script/extras/coffee-script.js"></script> 
-	<script type='text/coffeescript' src="life.coffee"></script>
+	<script type='text/coffeescript' src="life_table.coffee"></script>
+	<script type='text/coffeescript' src="life_html5.coffee"></script> 
 	<script type='text/coffeescript'>
 	$ ->
 		life_setup()
 		life_randomise()
+#		gameOfLife.init 1024, 800
 	</script>
 
 </head>
@@ -115,13 +117,26 @@
 	      <span class="small">by <a href="http://github.com/victusfate">victusfate</a></span></h1>
 
 	    <div class="description">
-	      conway's game of life with coffeescript and html5 canvas
+	      conway's game of life using html table elements original source <a href="http://cafaq.cafaq.com/lifefaq/index.php">Conway's Game of Life FAQ</a>
 	    </div>
-
 		<div>
 			<TABLE id="life_table" BORDER="0" CELLPADDING="1" CELLSPACING="1" color="#000000" bgcolor="#808080" onmouseover="life_start();" onmouseout="life_stop();" onclick="life_click();">
 			</TABLE>
 		</div>
+	    <div class="description">
+			conway's game of life with coffeescript and html5 canvas<br/>
+			<h2>Under Construction</h2>
+	    </div>
+		<div>
+			<form> 
+				<input type="button" id="pause" value="Pause/Play" onclick="gol.step()" /> | 
+				<input type="button" id="clear" value="Clear" onclick="gol.clear()" />
+			</form>
+			<canvas id="canvasgol">
+				<h1>This application requires a HTML5 compliant browser.</h1>
+			</canvas>
+		</div>
+
 
     	<h2>Contact</h2>
 		<p>Mark Essel (messel@gmail.com)
