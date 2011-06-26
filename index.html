@@ -98,7 +98,8 @@
 		life_setup()
 		life_randomise()
 		initGame document.getElementById('halmacanvas'), document.getElementById('movecount')
-		gol = new GameOfLife 1000,600,100,60,"canvasgol"
+		gol = new GameOfLife 800,600,80,60,"canvasgol"
+		window.gol = gol
 	</script>
 
 </head>
@@ -119,6 +120,20 @@
 	      <span class="small">by <a href="http://github.com/victusfate">victusfate</a></span></h1>
 
 	    <div class="description">
+			<h2>conway's game of life with coffeescript and html5 canvas</h2>
+			<h2>Under Construction</h2>
+	    </div>
+		<div>
+			<form> 
+				<input type="button" id="pause" value="Pause/Play" onclick="gol.update()" /> | 
+				<input type="button" id="clear" value="Clear" onclick="gol.clear()" />
+			</form>
+			<canvas id="canvasgol">
+				<h1>This application requires a HTML5 compliant browser.</h1>
+			</canvas>
+		</div>
+		<br/><br/><br/>
+	    <div class="description">
 	      <h2>conway's game of life</h2> 
 		   using html table elements original source <a href="http://cafaq.cafaq.com/lifefaq/index.php">Conway's Game of Life FAQ</a>
 	    </div>
@@ -135,20 +150,6 @@
 		<div>
 			<p id="moves">Moves: <span id="movecount">0</span></p> 
 			<canvas id="halmacanvas" width="451" height="451"></canvas>
-		</div>
-		<br/><br/><br/>
-	    <div class="description">
-			<h2>conway's game of life with coffeescript and html5 canvas</h2>
-			<h2>Under Construction</h2>
-	    </div>
-		<div>
-			<form> 
-				<input type="button" id="pause" value="Pause/Play" onclick="gol.update()" /> | 
-				<input type="button" id="clear" value="Clear" onclick="gol.clear()" />
-			</form>
-			<canvas id="canvasgol">
-				<h1>This application requires a HTML5 compliant browser.</h1>
-			</canvas>
 		</div>
 		<br/><br/><br/>
 
