@@ -67,6 +67,7 @@ class GameOfLife
 			@canvas.onmousedown = @onMouseDown
 			@canvas.onmousemove = @onMouseMove
 			@canvas.onmouseup = @onMouseUp
+			@canvas.getMouseLocation = @getMouseLocation
 			console.log "before random"
 			@random()
 			console.log "after random"
@@ -233,14 +234,31 @@ class GameOfLife
 		@grid[5][6] = 1
 		console.log "finished random"
 
+	getMouseLocation: (e) ->
+		console.log "GameOfLife getMouseLocation canvas "+@canvas
+		x = y = null
+		if e.pageX != undefined and e.pageY != undefined
+			x = e.pageX
+			y = e.pageY
+		else
+			x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft
+			y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop
+		x -= @canvas.offsetLeft
+		y -= @canvas.offsetTop
+		x = Math.min x, @width
+		y = Math.min y, @height		
+		x = Math.floor x / @kCellWidth
+		y = Math.floor y / @kCellHeight
+		@mouseDown = true
+		console.log "  x y "+x+","+y
+		return [x,y]
+
 	onMouseDown: (e) ->
-#		@mouseDown = true
-#		canvasX = e.pageX - @canvas.offsetLeft
-#		canvasY = e.pageY - @canvas.offsetTop
+		[x,y] = @getMouseLocation(e)
+
 
 	onMouseMove: (e) ->
-#		canvasX = e.pageX - @canvas.offsetLeft
-#		canvasY = e.pageY - @canvas.offsetTop
+		[x,y] = @getMouseLocation(e)
 #		if ctx = @canvas.getContext
 #			ctx.strokeStyle = "rgb(255,150,150)"
 #			ctx.beginPath()
@@ -251,7 +269,7 @@ class GameOfLife
 #			ctx.stroke()
 
 	onMouseUp: (e) ->
-#		@mouseDown = false
+		@mouseDown = false
 
 
 window.GameOfLife = GameOfLife
